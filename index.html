@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dev.cont contabilidade</title>
+  <style>
+    :root {
+      --navy: #07111f;
+      --navy-2: #0d1b2f;
+      --gold: #c8893d;
+      --gold-2: #e1a85b;
+      --white: #f7f3ec;
+      --muted: #c9c2b8;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(225, 168, 91, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top right, #17243a 0%, var(--navy) 42%, #03070d 100%);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 84px 0 64px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      color: var(--gold-2);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+      background: rgba(200, 137, 61, 0.08);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #101010;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--white);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .hero-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+    }
+
+    .hero-card h2 {
+      color: var(--gold-2);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+    }
+
+    .hero-card li::before {
+      content: "•";
+      color: var(--gold);
+      margin-right: 10px;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -1.5px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 170px;
+    }
+
+    .card h3 {
+      color: var(--gold-2);
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .person {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 26px;
+      padding: 28px;
+    }
+
+    .person small {
+      color: var(--gold-2);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .person h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .person p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      background: rgba(200, 137, 61, 0.06);
+    }
+
+    .contact-box {
+      background: linear-gradient(145deg, rgba(200,137,61,0.18), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 38px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    footer {
+      padding: 30px 0;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">dev<span>.</span>cont<span>.</span></div>
+      <nav class="nav-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Quem somos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="tag">dev.cont contabilidade</div>
+        <h1>Mais que contabilidade.</h1>
+        <p>
+          Contabilidade & organização financeira para MEIs, autônomos, profissionais digitais e pequenos negócios que querem crescer com mais clareza, estratégia e segurança.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="https://wa.me/5585998110214?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20dev.cont%20e%20gostaria%20de%20atendimento." target="_blank">Falar com Jhenyffer</a>
+          <a class="btn btn-secondary" href="https://wa.me/5585996933096?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20dev.cont%20e%20gostaria%20de%20atendimento." target="_blank">Falar com Eduardo</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>Clareza, estratégia e crescimento</h2>
+        <ul>
+          <li>Atendimento em Fortaleza e online</li>
+          <li>Suporte próximo e humanizado</li>
+          <li>Organização contábil e financeira</li>
+          <li>Relatórios e análises para decisões melhores</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="servicos" class="container">
+      <div class="section-title">
+        <h2>Como podemos ajudar</h2>
+        <p>Serviços pensados para simplificar a rotina contábil e financeira de pequenos negócios.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>IRPF</h3>
+          <p>Declaração de Imposto de Renda com segurança, clareza e atendimento próximo.</p>
+        </div>
+        <div class="card">
+          <h3>MEI</h3>
+          <p>Abertura, declaração anual, regularização, DAS e suporte para o dia a dia do negócio.</p>
+        </div>
+        <div class="card">
+          <h3>Regularização</h3>
+          <p>Organização de pendências fiscais, contábeis e financeiras com orientação clara.</p>
+        </div>
+        <div class="card">
+          <h3>Gestão contábil e financeira</h3>
+          <p>Acompanhamento para entender números, organizar processos e melhorar decisões.</p>
+        </div>
+        <div class="card">
+          <h3>Relatórios financeiros</h3>
+          <p>Relatórios e análises para trazer mais visão sobre receitas, custos e resultados.</p>
+        </div>
+        <div class="card">
+          <h3>Consultoria para pequenos negócios</h3>
+          <p>Orientação contábil e financeira para quem quer crescer com mais estrutura.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-title">
+        <h2>Nosso diferencial</h2>
+        <p>
+          A dev.cont une experiência contábil, organização financeira e tecnologia para entregar um atendimento mais próximo, claro e estratégico.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Contabilidade moderna</h3>
+          <p>Sem burocracia desnecessária. Explicamos o que importa de forma simples e objetiva.</p>
+        </div>
+        <div class="card">
+          <h3>Organização financeira</h3>
+          <p>Ajudamos o cliente a entender para onde o dinheiro vai e como o negócio pode evoluir.</p>
+        </div>
+        <div class="card">
+          <h3>Atendimento próximo</h3>
+          <p>Trabalhamos com comunicação humana, suporte real e acompanhamento com cuidado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="container">
+      <div class="section-title">
+        <h2>Quem está por trás da dev.cont</h2>
+        <p>Uma parceria construída com experiência contábil, visão analítica e foco no crescimento dos clientes.</p>
+      </div>
+      <div class="about">
+        <div class="person">
+          <small>Contadora | CRC CE-029511/O</small>
+          <h3>Jhenyffer Cavalcante</h3>
+          <p>
+            Contadora com experiência em fechamento contábil, demonstrações financeiras, auditoria e análise contábil. Atua com foco em organização financeira, melhoria de processos e gestão contábil estratégica.
+          </p>
+          <div class="skills">
+            <span class="skill">Fechamento contábil</span>
+            <span class="skill">Conciliações</span>
+            <span class="skill">Auditoria</span>
+            <span class="skill">Power Query</span>
+            <span class="skill">SQL</span>
+            <span class="skill">ERP</span>
+          </div>
+        </div>
+        <div class="person">
+          <small>Analista Contábil</small>
+          <h3>Eduardo Cavalcante</h3>
+          <p>
+            Profissional com mais de 8 anos de experiência em rotinas contábeis, fechamento mensal, controle patrimonial, obrigações acessórias e suporte a auditorias internas e externas.
+          </p>
+          <div class="skills">
+            <span class="skill">Controle patrimonial</span>
+            <span class="skill">Fechamento mensal</span>
+            <span class="skill">DRE e balanços</span>
+            <span class="skill">Auditoria</span>
+            <span class="skill">Excel avançado</span>
+            <span class="skill">Metabase</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="container">
+      <div class="contact-box">
+        <h2>Vamos organizar seu negócio?</h2>
+        <p>Atendimento em Fortaleza e online. Escolha um dos canais abaixo para falar com a dev.cont.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="https://www.instagram.com/dev.cont" target="_blank">Instagram</a>
+          <a class="btn btn-secondary" href="https://wa.me/+5585998110214" target="_blank">WhatsApp Jhenyffer</a>
+          <a class="btn btn-secondary" href="https://wa.me/5585996933096" target="_blank">WhatsApp Eduardo</a>
+          <a class="btn btn-secondary" href="mailto:devcont.assessoria@gmail.com">E-mail</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    dev.cont contabilidade • Fortaleza/CE • Atendimento online • devcont.assessoria@gmail.com
+  </footer>
+</body>
+</html>
